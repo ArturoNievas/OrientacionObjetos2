@@ -1,0 +1,34 @@
+@startuml
+
+abstract Empleado{
+ #casado: Boolean
+ #hijos: Integer
+ #examenes: Integer
+ #antiguedad: Integer 
+ +sueldo(): Real
+}
+
+class Temporario{
+ +basico(): Real
+ +adicional(): Real
+ +descuanto(): Real
+}
+
+class Pasante{
+ +basico(): Real
+ +adicional(): Real
+ +descuanto(): Real
+}
+
+class Planta{
+ +basico(): Real
+ +adicional(): Real
+ +descuanto(): Real
+}
+
+Empleado <|-- Temporario
+Empleado <|-- Pasante
+Empleado <|-- Planta
+
+
+@enduml

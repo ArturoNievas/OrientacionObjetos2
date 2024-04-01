@@ -1,0 +1,57 @@
+@startuml
+
+abstract Opcion{
+ +abstract compareTo(Piedra): Integer
+ +abstract compareTo(Papel): Integer
+ +abstract compareTo(Tijera): Integer
+ +abstract compareTo(Lagarto): Integer
+ +abstract compareTo(Spock): Integer
+}
+
+class Piedra{
+ +compareTo(Piedra): Integer
+ +compareTo(Papel): Integer
+ +compareTo(Tijera): Integer
+ +compareTo(Lagarto): Integer
+ +compareTo(Spock): Integer
+}
+
+class Papel{
+ +compareTo(Piedra): Integer
+ +compareTo(Papel): Integer
+ +compareTo(Tijera): Integer
+ +compareTo(Lagarto): Integer
+ +compareTo(Spock): Integer
+}
+
+class Tijera{
+ +compareTo(Piedra): Integer
+ +compareTo(Papel): Integer
+ +compareTo(Tijera): Integer
+ +compareTo(Lagarto): Integer
+ +compareTo(Spock): Integer
+}
+
+class Lagarto{
+ +compareTo(Piedra): Integer
+ +compareTo(Papel): Integer
+ +compareTo(Tijera): Integer
+ +compareTo(Lagarto): Integer
+ +compareTo(Spock): Integer
+}
+
+class Spock{
+ +compareTo(Piedra): Integer
+ +compareTo(Papel): Integer
+ +compareTo(Tijera): Integer
+ +compareTo(Lagarto): Integer
+ +compareTo(Spock): Integer
+}
+
+Opcion <|-- Piedra
+Opcion <|-- Papel
+Opcion <|-- Tijera
+Opcion <|-- Lagarto
+Opcion <|-- Spock
+
+@enduml

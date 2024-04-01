@@ -1,0 +1,36 @@
+@startuml
+
+class Tweeter{
+ +agregarUsuario(String)
+ +eliminarUsuario(String)
+}
+
+class Usuario{
+ -screenName
+ +tweetear(String):Tweet
+ +retweetear(Tweet):Tweet
+ +eliminarTweets()
+}
+
+abstract Tweet{
+}
+
+class TweetOriginal{
+ -texto: String
+}
+
+class Retweet{
+ 
+}
+
+Tweeter "1" *--> "n" Usuario: usuarios
+Usuario "1" *--> "n" Tweet: tweets
+
+Tweet <|-- TweetOriginal
+Tweet <|-- Retweet
+
+TweetOriginal "1" <-- "1" Retweet: tweetOrigen
+Retweet "n" <--* "1" TweetOriginal: retweets
+
+
+@enduml
