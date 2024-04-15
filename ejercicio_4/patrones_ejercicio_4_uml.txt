@@ -1,29 +1,31 @@
 @startuml
 
 abstract Empleado{
- #casado: Boolean
- #hijos: Integer
- #examenes: Integer
- #antiguedad: Integer 
- +sueldo(): Real
+	+sueldo(): Real
+	+descuento(): Real
+ 	+{abstract} basico(): Real
+	+{abstract} adicional(): Real
 }
 
 class Temporario{
- +basico(): Real
- +adicional(): Real
- +descuanto(): Real
+	-casado: Boolean
+ 	-hijos: Integer
+	+basico(): Real
+	+adicional(): Real
 }
 
 class Pasante{
- +basico(): Real
- +adicional(): Real
- +descuanto(): Real
+	-examenes: Integer
+	+basico(): Real
+	+adicional(): Real
 }
 
 class Planta{
- +basico(): Real
- +adicional(): Real
- +descuanto(): Real
+	-casado: Boolean
+ 	-hijos: Integer
+ 	-antiguedad: Integer
+	+basico(): Real
+	+adicional(): Real
 }
 
 Empleado <|-- Temporario

@@ -18,7 +18,13 @@ class VoorheesExporter{
  +exportar(Socio 1..): String
 }
 
+class JSONSimpleExporter{
+ +exportar(Socio): String
+ +exportar(Socio 1..): String
+}
+
 Biblioteca "1" *--> "n" Socio: socios
 Biblioteca "1" *--> "1" VoorheesExporter: exporter
+JSONSimpleExporter --|> VoorheesExporter
 
 @enduml

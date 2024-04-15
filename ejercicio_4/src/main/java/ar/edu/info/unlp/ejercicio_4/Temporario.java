@@ -51,9 +51,4 @@ public class Temporario extends Empleado {
 		return adicional + this.hijes*2000;
 	}
 
-	@Override
-	public double descuento() {
-		return 0.13*this.basico() + 0.05*this.adicional();
-	}
-
 }

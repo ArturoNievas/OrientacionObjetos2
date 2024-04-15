@@ -1,0 +1,59 @@
+@startuml
+
+class ToDoItem <<Context>>{
+ -nombre: String
+ -comienzo: Date
+ -fin: Date
+ -comentarios: String[*]
+ +ToDoItem(String name)
+ +start()
+ +togglePause()
+ +finish()
+ +workedTime(): Duration
+ +addComment(String comment)
+}
+
+abstract class Estado <<State>>{
+ +{abstract}start(tarea: ToDoItem)
+ +{abstract}togglePause(tarea: ToDoItem)
+ +{abstract}finish(tarea: ToDoItem)
+ +workedTime(tarea: ToDoItem): Duration
+ +agregarComentario(tarea: ToDoItem, comentario: String)
+}
+
+class Paused <<Concret State>>{
+ +start(tarea: ToDoItem)
+ +togglePause(tarea: ToDoItem)
+ +finish(tarea: ToDoItem)
+}
+
+class InProgress <<Concret State>>{
+ +start(tarea: ToDoItem)
+ +togglePause(tarea: ToDoItem)
+ +finish(tarea: ToDoItem)
+}
+
+class Pending <<Concret State>>{
+ +start(tarea: ToDoItem)
+ +togglePause(tarea: ToDoItem)
+ +finish(tarea: ToDoItem)
+ +workedTime(tarea: ToDoItem): Duration
+}
+
+class Finished <<Concret State>>{
+ +start(tarea: ToDoItem)
+ +togglePause(tarea: ToDoItem)
+ +finish(tarea: ToDoItem)
+ +workedTime(tarea: ToDoItem): Duration
+ +agregarComentario(tarea: ToDoItem, comentario: String)
+}
+
+Estado <|-- Pending
+Estado <|-- InProgress
+Estado <|-- Paused
+Estado <|-- Finished
+
+
+ToDoItem o--> Estado: estado
+
+@enduml
