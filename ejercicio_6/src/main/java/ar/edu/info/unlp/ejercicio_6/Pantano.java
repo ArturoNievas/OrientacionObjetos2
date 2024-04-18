@@ -8,18 +8,22 @@ public class Pantano extends Atomica {
 	}
 	
 	@Override
-	public boolean equals(Tierra topografia) {
+	public boolean equalsAgua() {
 		return false;
 	}
 
 	@Override
-	public boolean equals(Agua topografia) {
+	public boolean equalsTierra() {
 		return false;
 	}
 
 	@Override
-	public boolean equals(Pantano topografia) {
+	public boolean equalsPantano() {
 		return true;
 	}
 
+	@Override
+	public boolean equals(Topografia topografia) {
+		return topografia.equalsPantano();
+	}
 }

@@ -1,0 +1,58 @@
+@startuml
+
+class Proyecto {
+ -nombre: String
+ -fechaInicio: Date
+ -fechaFin: Date
+ -objetivo: String
+ -cantidadIntegrantes: int
+ -pagoPorDia: double
+ -margenDeGanancia: double
+ +Proyecto(nombre: String, fechaInicio: Date, fechaFin: Date, objetivo: String,
+  cantidadIntegrantes: int, pagoPorDia: double)
+ +aprobarEtapa()
+ +costoDelProyecto(): double
+ +precioDelProyecto(): double
+ +moficarMargenDeGanancia(porcentaje: double)
+ +cancelarProyecto()
+}
+
+abstract class Etapa <<State>>{
+ +{abstract}aprobarEtapa(proyecto: Proyecto)
+ +{abstract}modificarMargenDeGanancia(proyecto: Proyecto)
+ +{abstract}cancelarProyecto(proyecto: Proyecto)
+}
+
+class Construccion <<ConcreteState>>{
+ +aprobarEtapa(proyecto: Proyecto)
+ +modificarMargenDeGanancia(proyecto: Proyecto)
+ +cancelarProyecto(proyecto: Proyecto)
+}
+
+class Evaluacion <<ConcreteState>>{
+ +aprobarEtapa(proyecto: Proyecto)
+ +modificarMargenDeGanancia(proyecto: Proyecto)
+ +cancelarProyecto(proyecto: Proyecto)
+}
+
+class Confirmado <<ConcreteState>>{
+ +aprobarEtapa(proyecto: Proyecto)
+ +modificarMargenDeGanancia(proyecto: Proyecto)
+ +cancelarProyecto(proyecto: Proyecto)
+}
+
+class Cancelado <<ConcreteState>>{
+ +aprobarEtapa(proyecto: Proyecto)
+ +modificarMargenDeGanancia(proyecto: Proyecto)
+ +cancelarProyecto(proyecto: Proyecto)
+}
+
+
+Etapa <|-- Construccion 
+Etapa <|-- Evaluacion 
+Etapa <|-- Confirmado 
+Etapa <|-- Cancelado 
+
+Proyecto o--> Etapa: etapa
+
+@enduml

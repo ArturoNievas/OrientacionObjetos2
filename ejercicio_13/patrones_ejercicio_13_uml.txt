@@ -1,0 +1,41 @@
+@startuml
+
+class Decodificador <<Context>>{
+ +sugerirPeliculas(): Pelicula[3]
+ +configurarSugerencias(sugerencia: Sugerencia)
+}
+
+class Pelicula {
+ -titulo: String
+ -anioDeEstreno: int
+ -puntaje: double
+ +agregarSimilar()
+}
+
+interface Sugerencia <<Strategy>>{
+ +sugerirPeliculas(deco: Decodificador): Pelicula[3]
+}
+
+class Novedad <<ConcreteStrategy>>{
+ +sugerirPeliculas(deco: Decodificador): Pelicula[3]
+}
+
+class Similaridad <<ConcreteStrategy>>{
+ +sugerirPeliculas(deco: Decodificador): Pelicula[3]
+}
+
+class Puntaje <<ConcreteStrategy>>{
+ +sugerirPeliculas(deco: Decodificador): Pelicula[3]
+}
+
+Decodificador o--> Pelicula: grillaDePeliculas [0..]
+Decodificador o--> Pelicula: reproducidas[0..]
+Decodificador o--> Sugerencia: sugerencia
+
+Sugerencia <|.. Novedad
+Sugerencia <|.. Similaridad
+Sugerencia <|.. Puntaje
+
+Pelicula <--o Pelicula: similares [0..]
+
+@enduml

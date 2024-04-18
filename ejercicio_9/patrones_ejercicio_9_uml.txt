@@ -1,0 +1,48 @@
+@startuml
+
+class Excursion<<Context>>{
+ -nombre: String
+ -comienzo: Date
+ -fin: Date
+ -puntoDeEncuentro: String
+ -cupoMinimo: int
+ -cupoMaximo: int
+ +inscribir(usuario: Usuario)
+ +obtenerInformacion(): String
+}
+
+abstract class Estado <<State>>{
+ +{abstract}inscribir(excursion: Excursion, usuario: Usuario)
+ +{abstract}obtenerInformacion(excursion: Excursion)
+}
+
+class Provisoria <<Concret State>>{
+ +inscribir(excursion: Excursion, usuario: Usuario)
+ +obtenerInformacion(excursion: Excursion)
+}
+
+class Definitiva <<Concret State>>{
+ +inscribir(excursion: Excursion, usuario: Usuario)
+ +obtenerInformacion(excursion: Excursion)
+}
+
+class Completa<<Concret State>>{
+ +inscribir(excursion: Excursion, usuario: Usuario)
+ +obtenerInformacion(excursion: Excursion)
+}
+
+class Usuario{
+ -nombre: String
+ -apellido: String
+ -email: String
+}
+
+Estado <|-- Provisoria 
+Estado <|-- Definitiva 
+Estado <|-- Completa
+
+Excursion o--> Estado: estado
+Excursion o--> Usuario: inscriptos 0..*
+Excursion o--> Usuario: listaDeEspera 0..*
+
+@enduml

@@ -11,7 +11,7 @@ public class Pending extends Estado {
 
 	@Override
 	public void togglePause(ToDoItem tarea) {
-		throw new RuntimeException("La tarea no se encuentra en Pending ni en InProgress");
+		throw new RuntimeException("Error: La tarea debe estar pausada o en progreso");
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class Pending extends Estado {
 	
 	@Override
 	public Duration workedTime(ToDoItem tarea) {
-		throw new RuntimeException("La tarea se encuentra en Pending");
+		throw new RuntimeException("Error: La tarea aun no comenzó a ejecutarse");
 	}
 
 }

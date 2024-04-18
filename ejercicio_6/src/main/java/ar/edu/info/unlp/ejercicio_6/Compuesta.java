@@ -30,16 +30,26 @@ public class Compuesta extends Topografia {
 
 	@Override
 	public boolean equals(Topografia topografia) {
-		return topografia.equals(this);
+		return topografia.equalsCompuesta(this);
 	}
 
 	@Override
-	public boolean equals(Atomica topografia) {
+	public boolean equalsAgua() {
 		return false;
 	}
 
 	@Override
-	public boolean equals(Compuesta topografia) {
+	public boolean equalsTierra() {
+		return false;
+	}
+
+	@Override
+	public boolean equalsPantano() {
+		return false;
+	}
+
+	@Override
+	public boolean equalsCompuesta(Compuesta topografia) {
 		return this.topografias.equals(topografia.getTopografias());
 	}
 	

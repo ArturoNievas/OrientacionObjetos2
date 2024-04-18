@@ -6,20 +6,27 @@ public class Tierra extends Atomica {
 	public double proporcionAgua() {
 		return 0;
 	}
-	
+
 	@Override
-	public boolean equals(Tierra topografia) {
-		return true;
-	}
-	
-	@Override
-	public boolean equals(Agua topografia) {
+	public boolean equalsAgua() {
 		return false;
 	}
 
 	@Override
-	public boolean equals(Pantano topografia) {
+	public boolean equalsTierra() {
+		return true;
+	}
+
+	@Override
+	public boolean equalsPantano() {
 		return false;
 	}
+
+	@Override
+	public boolean equals(Topografia topografia) {
+		return topografia.equalsTierra();
+	}
+
+	
 	
 }

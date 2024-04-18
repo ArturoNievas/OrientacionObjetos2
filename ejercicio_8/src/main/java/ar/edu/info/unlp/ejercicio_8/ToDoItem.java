@@ -20,6 +20,7 @@ public class ToDoItem {
 		this.comienzo = LocalDateTime.now();
 		this.fin = null;
 		this.estado = new Pending();
+		this.comentarios = new ArrayList<String>();
 	}
 
 	public String getNombre() {
@@ -36,6 +37,11 @@ public class ToDoItem {
 
 	public void setFin(LocalDateTime fin) {
 		this.fin = fin;
+	}
+	
+	// Se implementa solo para poder testear la clase
+	public void setComienzo(LocalDateTime comienzo) {
+		this.comienzo = comienzo;
 	}
 	
 	public LocalDateTime getComienzo() {

@@ -1,0 +1,64 @@
+@startuml
+
+class Dispositivo{
+ +send(data: String): String
+ +conectarCon(conexion: Connection)
+ +configurarCRC(crcCalculator: CRC)
+}
+
+interface Connection <<Strategy>>{
+ +send(data: String, crc: int): String
+ +pict(): String
+}
+
+class WiFiConn <<ConcreteStrategy>>{
+ -pict: String
+ +send(data: String, crc: int): String
+ +pict(): String
+}
+
+class Adapter4G <<Adapter>>{
+ +send(data: String, crc: int): String
+ +pict(): String
+}
+
+class 4GConnection <<Adaptee>><<ConcreteStrategy>>{
+ -symb: String
+ +transmit(data: String, crc: int): String
+ +symb(): String
+}
+
+abstract class CRC <<Strategy>>{
+ +{abstract} crcFor(data: String): int
+}
+
+class CRC16_Calculator<<ConcreteStrategy>>{
+ +crcFor(data: String): int
+}
+
+class CRC32_Calculator<<ConcreteStrategy>>{
+ +crcFor(data: String): int
+}
+
+class Ringer {
+ +ring()
+}
+
+class Display{
+ +showBanner(img : String): String
+}
+
+Dispositivo o--> Connection: conexion
+Dispositivo o--> CRC: crcCalculator
+Dispositivo o--> Display: display
+Dispositivo o--> Ringer: ringer
+
+
+Connection <|.. WiFiConn
+Connection <|.. Adapter4G
+Adapter4G o--> 4GConnection: adaptado
+
+CRC <|-- CRC16_Calculator
+CRC <|-- CRC32_Calculator
+
+@enduml
