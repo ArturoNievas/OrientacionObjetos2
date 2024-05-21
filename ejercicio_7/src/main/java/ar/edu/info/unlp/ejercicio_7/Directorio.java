@@ -53,7 +53,7 @@ public class Directorio extends Elemento {
 	public String listadoDeContenido(String padre) {
 		String padreNuevo = padre + "/" + this.nombre;
 		StringBuilder listado = new StringBuilder(padreNuevo).append("\n");
-	    if (this.contenido != null) {
+	    if (!this.contenido.isEmpty()) {
 	        this.contenido.forEach(e -> listado.append(e.listadoDeContenido(padreNuevo)));
 	    }
 	    return listado.toString();
