@@ -1,0 +1,27 @@
+@startuml
+
+interface DataBaseAccess <<Subject>>{
+ +insertNewRow(rowDate: String[*]): integer
+ +getSearchResults(queryString: String): String[*]
+}
+
+class DataBaseRealAccess <<RealSubject>>{
+ -database
+ +insertNewRow(rowDate: String[*]): integer
+ +getSearchResults(queryString: String): String[*]
+}
+
+class DataBaseProxy <<Proxy>>{
+ -logueado: boolean
+ +iniciarSesion()
+ +cerrarSesion()
+ +insertNewRow(rowDate: String[*]): integer
+ +getSearchResults(queryString: String): String[*]
+}
+
+DataBaseAccess<|.. DataBaseRealAccess
+DataBaseAccess<|.. DataBaseProxy
+
+DataBaseProxy o--> DataBaseRealAccess: database
+
+@enduml

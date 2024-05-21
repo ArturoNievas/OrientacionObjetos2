@@ -1,0 +1,57 @@
+@startuml
+
+interface FileOO2 <<Component>> {
+ +prettyPrint(): String
+}
+
+class File <<ConcreteComponent>> {
+ -nombre: String
+ -extension: String
+ -tamanio: Integer
+ -fechaDeCreacion: Date
+ -fechaDeModificacion: Date
+ -permisos: String
+ +prettyPrint(): String
+}
+
+abstract class Aspect <<Decorator>> {
+ +{abstract}prettyPrint(): String
+}
+
+class AspectNombre <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+class AspectExtension <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+class AspectTamaño <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+class AspectFechaDeCreacion <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+class AspectFechaDeModificacion <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+class AspectPermisos <<ConcreteDecorator>> {
+ +prettyPrint(): String
+}
+
+FileOO2 <|-- Aspect
+FileOO2 <|-- File 
+
+Aspect <|-- AspectNombre
+Aspect <|-- AspectExtension
+Aspect <|-- AspectTamaño
+Aspect <|-- AspectFechaDeCreacion
+Aspect <|-- AspectFechaDeModificacion
+Aspect <|-- AspectPermisos
+
+FileOO2 <--o Aspect: componente
+
+@enduml

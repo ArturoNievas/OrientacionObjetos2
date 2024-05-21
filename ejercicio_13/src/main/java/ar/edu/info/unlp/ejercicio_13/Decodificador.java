@@ -23,7 +23,7 @@ public class Decodificador {
 	}
 
 	public List<Pelicula> getGrillaDePeliculas() {
-		return grillaDePeliculas;
+		return new ArrayList<Pelicula>(grillaDePeliculas);
 	}
 	
 	public void agregarPelicula(Pelicula pelicula) {

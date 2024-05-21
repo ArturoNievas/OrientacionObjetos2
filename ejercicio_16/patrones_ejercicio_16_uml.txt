@@ -1,0 +1,80 @@
+@startuml
+
+class Medidor{
+ +medirTemperatura(): Double
+ +medirPresion(): Double
+ +medirRadicacionSolar(): Double
+}
+
+class HomeWeatherStation {
+ -temperaturas: Double[*]
+ +getTemperatura(): Double
+ +getPresion(): Double
+ +getRadicacionSolar(): Double
+ +getTemperaturas(): Double[*]
+ +displayData(): String
+}
+
+interface WeatherData {
+ +getTemperatura(): Double
+ +getPresion(): Double
+ +getRadicacionSolar(): Double
+ +getTemperaturas(): Double[*]
+ +displayData(): String
+}
+
+abstract class Data <<Decorator>>{
+ +<constructor>Data(WeatherData: component)
+ +getTemperatura(): Double
+ +getPresion(): Double
+ +getRadicacionSolar(): Double
+ +getTemperaturas(): Double[*]
+ +displayData(): String
+}
+
+class DataTemperaturaC <<ConcreteDecorator>> {
+ +<constructor>DataTemperaturaC(WeatherData: component)
+ +displayData(): String
+}
+
+class DataTemperaturaF <<ConcreteDecorator>> {
+ +<constructor>DataTemperaturaF(WeatherData: component)
+ +displayData(): String
+}
+
+class DataPresion <<ConcreteDecorator>> {
+ +<constructor>DataPresion(WeatherData: component)
+ +displayData(): String
+}
+
+class DataPromedioTemperatura <<ConcreteDecorator>> {
+ +<constructor>DataPromedioTemperatura(WeatherData: component)
+ +displayData(): String
+}
+
+class DataTemperaturaMinima <<ConcreteDecorator>> {
+ +<constructor>DataTemperaturaMinima(WeatherData: component)
+ +displayData(): String
+}
+
+class DataTemperaturaMaxima <<ConcreteDecorator>> {
+ +<constructor>DataTemperaturaMaxima(WeatherData: component)
+ +displayData(): String
+}
+
+
+WeatherData <.. HomeWeatherStation
+WeatherData <.. Data
+
+Data <|-- DataTemperaturaC
+Data <|-- DataTemperaturaF
+Data <|-- DataPresion
+Data <|-- DataPromedioTemperatura
+Data <|-- DataTemperaturaMinima
+Data <|-- DataTemperaturaMaxima
+
+Medidor <--o HomeWeatherStation: medidor
+
+WeatherData  <--o Data: component
+
+@enduml

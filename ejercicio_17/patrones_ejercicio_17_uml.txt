@@ -1,0 +1,96 @@
+@startuml
+
+abstract class Cliente {
+ -dni
+}
+
+class Gold {
+
+}
+
+class Silver {
+
+}
+
+Cliente <|-- Gold
+Cliente <|-- Silver
+
+abstract class ProductoFinanciero {
+ -fechaOperacion: Date
+ +{abstract}retornoInversion(montoInicial: Double): Double
+}
+
+class ProductoCombinado {
+
+}
+
+class CompraDolares {
+ -valorCompra: Double
+}
+
+class CompraPesos {
+ -valorCompra: Double
+}
+
+class PlazoFijo {
+ -cantidadDias: Integer
+ -interes: Double
+}
+
+class CompraBonoBajoRiesgo {
+ -parking: Integer
+}
+
+class CompraBonoAltoRiesgo {
+ -parking: Integer
+}
+
+ProductoFinanciero <|-- CompraDolares
+ProductoFinanciero <|-- CompraPesos
+ProductoFinanciero <|-- PlazoFijo 
+ProductoFinanciero <|-- CompraBonoBajoRiesgo
+ProductoFinanciero <|-- CompraBonoAltoRiesgo
+ProductoFinanciero <|-- ProductoCombinado
+
+ProductoFinanciero <--o ProductoCombinado: productos
+
+abstract class ConstructorProductoCombinado {
+
+}
+
+class Producto1 {
+
+}
+
+class Producto2 {
+
+}
+
+class Producto3 {
+
+}
+
+class Producto4 {
+
+}
+
+class Producto5 {
+
+}
+
+ConstructorProductoCombinado <|-up- Producto1
+ConstructorProductoCombinado <|-up- Producto2
+ConstructorProductoCombinado <|-up- Producto3
+ConstructorProductoCombinado <|-up- Producto4
+ConstructorProductoCombinado <|-up- Producto5
+
+Cliente --> Producto1: contructorProducto1
+Cliente --> Producto2: contructorProducto2
+
+Gold --> Producto3: contructorProducto3
+Gold --> Producto4: contructorProducto4
+Gold --> Producto5: contructorProducto5
+
+ConstructorProductoCombinado ..> ProductoCombinado: constructs
+
+@enduml

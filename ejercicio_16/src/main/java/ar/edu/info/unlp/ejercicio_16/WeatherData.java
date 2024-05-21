@@ -1,0 +1,18 @@
+package ar.edu.info.unlp.ejercicio_16;
+
+import java.util.List;
+
+public interface WeatherData {
+ 
+	double getTemperatura();
+
+	double getPresion();
+
+	double getRadiacionSolar();
+
+	List<Double> getTemperaturas();
+
+	String displayData();
+
+	
+}
