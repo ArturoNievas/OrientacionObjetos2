@@ -1,0 +1,61 @@
+@startuml
+
+
+class Empresa {
++agregarNumeroTelefono(String linea): boolean
++obtenerNumeroLibre(): String
++registrarUsuario(String data, String nombre, String tipo): Cliente
++registrarLlamada(Cliente origen, Cliente destino, String t, int duracion): Llamada
++calcularMontoTotalLlamadas(Cliente cliente): double
++cantidadDeUsuarios(): Integer
++existeUsuario(Cliente cliente): boolean
++getGestorNumeros(): GestorNumerosDisponibles
+}
+
+class Cliente {
+-tipo: String
+-nombre: String
+-numeroTelefono: String
+-cuit: String
+-dni: String
+
++getTipo(): String
++setTipo()
++getNombre(): String
++setNombre()
++getNumeroTelefono(): String
++setNumeroTelefono()
++getCuit(): String
++setCuit()
++getDNI(): String
++setDNI()
+}
+
+class Llamada {
+-tipoDeLlamada: String
+-origen: String 
+-destino: String 
+-duracion: Integer
+
++getTipoDeLlamada(): String
++getRemitente(): String
++getDuracion(): Integer
++getOrigen(): String
+}
+
+class GestorNumerosDisponibles {
+-tipoGenerador: String
+-lineas: SortedSet<String>
+
++getLineas(): SortedSet<String>
++obtenerNumeroLibre(): String
++cambiarTipoGenerador()
+}
+
+Empresa --> Cliente: clientes *.
+Empresa --> Llamada : llamadas *.
+Empresa --> GestorNumerosDisponibles : gestorNumerosDisponibles
+
+Cliente --> Llamada : llamadas *.
+
+@enduml

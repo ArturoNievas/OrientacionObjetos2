@@ -1,0 +1,37 @@
+@startuml
+
+interface Mamifero {
++getIdentificador(): Integer
++setIdentificador()
++getEspecie(): String
++setEspecie()
++getFechaNacimiento(): Date
++setFechaNacimiento()
++getMadre(): Mamifero
++setMadre()
++getPadre(): Mamifero
++setPadre()
++getAbueloPaterno(): Mamifero
++getAbuelaPaterna(): Mamifero
++getAbueloMaterno(): Mamifero
++getAbuelaMaterna(): Mamifero
+}
+
+class RealMamifero {
+-id: Integer
+-especie: String
+-fechaNacimiento: Date
+}
+
+class NullObjectMamifero {
+
+}
+
+RealMamifero .up.|> Mamifero
+NullObjectMamifero .up.|> Mamifero
+
+
+RealMamifero -up-> Mamifero: madre
+RealMamifero -up-> Mamifero: padre
+
+@enduml

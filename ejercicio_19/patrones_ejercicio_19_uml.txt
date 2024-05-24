@@ -1,0 +1,96 @@
+@startuml
+
+abstract class Arma {
++{abstract} hacerDanio(Armadura a): Double
+}
+
+class Espada {
+
+}
+
+class Arco {
+
+}
+
+class BastonMago {
+
+}
+
+Espada -up-|> Arma
+Arco -up-|> Arma
+BastonMago -up-|> Arma
+
+abstract class Armadura {
++{abstract} recibirDanio(Espada a): Double
++{abstract} recibirDanio(Arco a): Double
++{abstract} recibirDanio(BastonMago a): Double
+}
+
+class ArmaduraCuero {
+
+}
+
+class ArmaduraAcero {
+
+}
+
+class ArmaduraHierro {
+
+}
+
+ArmaduraCuero -up-|> Armadura
+ArmaduraAcero -up-|> Armadura
+ArmaduraHierro -up-|> Armadura
+
+
+abstract class Habilidad {
+
+}
+
+class Magia {
+
+}
+
+class CombateADistancia {
+
+}
+
+class CombateCuerpoACuerpo {
+
+}
+
+Magia -up-|> Habilidad 
+CombateADistancia -up-|> Habilidad 
+CombateCuerpoACuerpo -up-|> Habilidad
+
+class Personaje {
+-nombre: String
+}
+
+Personaje --> Armadura: armadura
+Personaje --> Arma: arma
+Personaje --> Habilidad: habilidades (1,N)
+
+abstract class CreadorDePersonajes {
+
+}
+
+class CreadorMago {
+
+}
+
+class CreadorArquero {
+
+}
+
+class CreadorGuerrero {
+
+}
+
+CreadorMago -up-|> CreadorDePersonajes 
+CreadorArquero -up-|> CreadorDePersonajes 
+CreadorGuerrero -up-|> CreadorDePersonajes 
+
+CreadorDePersonajes .left.> Personaje: constructs
+
+@enduml
