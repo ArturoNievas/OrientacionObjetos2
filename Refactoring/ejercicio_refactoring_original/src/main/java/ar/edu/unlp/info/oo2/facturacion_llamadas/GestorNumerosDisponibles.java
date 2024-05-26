@@ -1,8 +1,6 @@
 package ar.edu.unlp.info.oo2.facturacion_llamadas;
 
 import java.util.TreeSet;
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.SortedSet;
 
 public class GestorNumerosDisponibles {
@@ -18,8 +16,8 @@ public class GestorNumerosDisponibles {
 		return lineas;
 	}
 	
-	public boolean agregarNumeroTelefono(String str) {
-		return this.lineas.add(str);
+	public boolean agregarNumeroTelefono(String numero) {
+		return this.lineas.add(numero);
 	}
 
 	public String obtenerNumeroLibre() {
@@ -28,7 +26,7 @@ public class GestorNumerosDisponibles {
 		return linea;
 	}
 
-	public void cambiarTipoGenerador( ModoDeObtencion modoObtencion) {
+	public void cambiarTipoGenerador(ModoDeObtencion modoObtencion) {
 		this.modoObtencion = modoObtencion;
 	}
 }

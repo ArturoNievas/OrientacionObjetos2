@@ -1,0 +1,105 @@
+@startuml
+
+
+class Empresa {
++registrarUsuarioFisico(String dni, String nombre): Cliente
++registrarUsuarioJuridico(String cuit, String nombre): Cliente
++cantidadDeUsuarios(): Integer
++existeUsuario(Cliente cliente): boolean
++getGestorNumeros(): GestorNumerosDisponibles
+}
+
+abstract class Cliente {
+-nombre: String
+-numeroTelefono: String
+
++getNombre(): String
++setNombre()
++getNumeroTelefono(): String
++setNumeroTelefono()
++getLlamadas(): Llamada[*]
++registrarLlamada(Cliente destino, TipoLlamada tipoLlamada, int duracion): Llamada
++{abstract} calcularMontoTotalLlamadas(): double
+}
+
+class PersonaFisica {
++getDni(): String
++setDni(String dni)
++calcularMontoTotalLlamadas(): double
+}
+
+class PersonaJuridica {
++getCuit(): String
++setCuit(String cuit)
++calcularMontoTotalLlamadas(): double
+}
+
+PersonaFisica -up-|> Cliente
+PersonaJuridica -up-|> Cliente
+
+class Llamada {
+-origen: String 
+-destino: String 
+-duracion: Integer
+
++getRemitente(): String
++getDuracion(): Integer
++getOrigen(): String
++calcularMonto(): double
+}
+
+Llamada --> TipoLlamada: tipoDeLlamada
+
+abstract class TipoLlamada <<Strategy>> {
++{abstract} calcularMonto(Integer duracion): double
++agregarIVA(double monto): double
+}
+
+class LlamadaNacional <<ConcreteStrategy>>{
++calcularMonto(Integer duracion): double
+}
+
+class LlamadaInternacional <<ConcreteStrategy>>{
++calcularMonto(Integer duracion): double
+}
+
+LlamadaNacional -up-|> TipoLlamada
+LlamadaInternacional -up-|> TipoLlamada
+
+class GestorNumerosDisponibles {
+-lineas: String[*]
+
++getLineas(): String[*]
++agregarNumeroTelefono(String numero): boolean
++obtenerNumeroLibre(): String
++cambiarTipoGenerador(ModoDeObtencion modoObtencion)
+}
+
+GestorNumerosDisponibles --> ModoDeObtencion: modoObtencion
+
+abstract class ModoDeObtencion <<Strategy>> {
++{abstract} obtenerNumeroLibre(String[*] lineas): String
+}
+
+class Primero <<ConcreteStrategy>>{
++obtenerNumeroLibre(String[*] lineas): String
+}
+
+class Ultimo <<ConcreteStrategy>>{
++obtenerNumeroLibre(String[*] lineas): String
+}
+
+class Aleatorio <<ConcreteStrategy>>{
++obtenerNumeroLibre(String[*] lineas): String
+}
+
+Primero -up-|> ModoDeObtencion
+Ultimo -up-|> ModoDeObtencion
+Aleatorio -up-|> ModoDeObtencion
+
+Empresa --> Cliente: clientes *.
+Empresa --> GestorNumerosDisponibles : gestorNumerosDisponibles
+
+Cliente --> Llamada : llamadas *.
+
+@enduml
