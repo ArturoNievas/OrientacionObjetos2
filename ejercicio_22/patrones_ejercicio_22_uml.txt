@@ -1,0 +1,60 @@
+@startuml
+
+class SubteWay <<Director>> {
++<<create>>Director(Constructor constructor)
++cambiarConstructor(Constructor constructor)
++hacerSanguche(): Sanguche
+}
+
+class Ingrediente {
+-tipo: String
+-precio: double
+}
+
+abstract class Constructor <<Builder>> {
++{abstract}agregarPan(): Ingrediente
++{abstract}agregarAderezo(): Ingrediente
++{abstract}agregarPrincipal(): Ingrediente
++{abstract}agregarAdicional(): Ingrediente
++obtenerSanguche(): Sanguche
+}
+
+class SangucheClasico <<ConcreteBuilder>> {
++agregarPan(): Ingrediente
++agregarAderezo(): Ingrediente
++agregarPrincipal(): Ingrediente
++agregarAdicional(): Ingrediente
+}
+
+class SangucheVegetariano <<ConcreteBuilder>> {
++agregarPan(): Ingrediente
++agregarAderezo(): Ingrediente
++agregarPrincipal(): Ingrediente
++agregarAdicional(): Ingrediente
+}
+
+class SangucheVegano <<ConcreteBuilder>> {
++agregarPan(): Ingrediente
++agregarAderezo(): Ingrediente
++agregarPrincipal(): Ingrediente
++agregarAdicional(): Ingrediente
+}
+
+SangucheClasico .up.|> Constructor 
+SangucheVegetariano .up.|> Constructor 
+SangucheVegano .up.|> Constructor 
+
+class Sanguche <<Product>> {
++calcularMonto(): double
+}
+
+Sanguche *-right-> Ingrediente: pan
+Sanguche *-right-> Ingrediente: aderezo
+Sanguche *-right-> Ingrediente: principal
+Sanguche *-right-> Ingrediente: adicional
+
+Constructor .right.> Sanguche: sanguche
+
+SubteWay o-right-> Constructor: constructor
+
+@enduml

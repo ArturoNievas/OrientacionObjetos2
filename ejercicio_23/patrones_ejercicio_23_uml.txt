@@ -1,0 +1,45 @@
+@startuml
+
+class Empresa {
++emitirPasaje(Pasajero pasajero, String dia, Srtring origen, String destino): Pasaje
++modificarPasaje(Pasaje pasaje)
++eliminarPasaje(Pasaje pasaje)
+}
+
+class Pasajero {
+-nombre: String
+-dni: Integer
+}
+
+class Pasaje {
+-dia: Dia
+}
+
+Pasaje --> Pasajero: pasajero
+
+class Vuelo <<TypeObject>>{
+-nombre: String
+-dias: String[*]
+-origen: String
+-destino: String
+-horaSalida: String
+-horaLlegada: String
+-costoBase: Double
+}
+
+class Tramo {
+-dia: String
+-asiento: String
+}
+
+Tramo -up-|> Vuelo
+Tramo -right-> Avion: avion
+
+class Avion {
+-configuracion: Integer
+-capacidadCarga: Double
+}
+
+Pasaje -right-> Tramo: tramos[1..*]
+
+@enduml
