@@ -1,0 +1,1 @@
+{"message": "*** lo hizo", "level": "SEVERE"}{"message": "Like", "level": "INFO"}{"message": "Featured", "level": "INFO"}{"message": "0 likes", "level": "WARNING"}{"message": "Dislike", "level": "INFO"}

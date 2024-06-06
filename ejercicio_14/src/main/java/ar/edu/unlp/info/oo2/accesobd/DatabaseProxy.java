@@ -2,6 +2,8 @@ package ar.edu.unlp.info.oo2.accesobd;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseProxy implements DatabaseAccess {
 
@@ -28,8 +30,10 @@ public class DatabaseProxy implements DatabaseAccess {
 	@Override
 	public Collection<String> getSearchResults(String queryString) {
 		if (this.logueado) {
+			Logger.getLogger("DatabaseProxy").log(Level.INFO, "Datos recuperados de la base de datos");
 			return this.database.getSearchResults(queryString);
 		} else {
+			Logger.getLogger("DatabaseProxy").log(Level.SEVERE, "Intento de acceso sin autenticar a la base de datos");
 			throw new RuntimeException("Error: Debe iniciar sesion para acceder a la base de datos");
 		}
 	}
@@ -37,8 +41,10 @@ public class DatabaseProxy implements DatabaseAccess {
 	@Override
 	public int insertNewRow(List<String> rowData) {
 		if (this.logueado) {
+			Logger.getLogger("DatabaseProxy").log(Level.WARNING, "Datos cargados a la base de datos");
 			return this.database.insertNewRow(rowData);
 		} else {
+			Logger.getLogger("DatabaseProxy").log(Level.SEVERE, "Intento de acceso sin autenticar a la base de datos");
 			throw new RuntimeException("Error: Debe iniciar sesion para acceder a la base de datos");
 		}
 	}
