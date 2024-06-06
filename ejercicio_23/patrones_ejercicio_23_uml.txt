@@ -12,7 +12,7 @@ class Pasajero {
 }
 
 class Pasaje {
--dia: Dia
+
 }
 
 Pasaje --> Pasajero: pasajero
@@ -41,5 +41,7 @@ class Avion {
 }
 
 Pasaje -right-> Tramo: tramos[1..*]
+
+Empresa -down-> Pasaje: pasajes[1..*]
 
 @enduml
